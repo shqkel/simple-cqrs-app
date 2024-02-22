@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    # custorm ?? primary, secondary
+    # hikari cp? db url ???? jdbc-url??.
+    primary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://nginx-proxy:33066/developer?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: clusteradmin
+      password: 1234
+    secondary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://nginx-proxy:33067/developer?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: clusteradmin
+      password: 1234
+    hikari:
+      pool-name: Hikari
+      auto-commit: false
+      max-lifetime: 58000 # ??? 180000 (30?), mysql? global_wait_timeout?? ?? ???? Connection validation?? ??
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          auto: validate
